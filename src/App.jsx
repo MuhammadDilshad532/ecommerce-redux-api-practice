@@ -1,11 +1,12 @@
 import './App.css'
+import SignUp from './Components/Auth/SignUp'
 
 function App() {
 
 
   return (
-    <div className='text-9xl'>
-      dilshad
+    <div className=''>
+     <SignUp />
     </div>
   )
 }

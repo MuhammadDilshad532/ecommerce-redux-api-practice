@@ -2,7 +2,7 @@ import axios from "axios";
 import { store } from "../Store/Store";
 import { setAuthData } from "../Store/Auth/Slice";
 
-const APP_URL = process.env.REACT_APP_BACKEND_LINK;
+const APP_URL = import.meta.env.VITE_BACKEND_URL;
 
 let options = {
     baseURL: APP_URL,
