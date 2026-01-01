@@ -1,9 +1,9 @@
 import axiosClient from "../axiosClient";
 
-const api = "api/posts";
-class postApi {
-    static getAllPosts () {
-        return axiosClient.get(`${api}/posts`);
-    }
+class PostApi {
+  static getAllPosts() {
+    return axiosClient.get("/posts");
+  }
 }
-export default postApi;
+
+export default PostApi;
