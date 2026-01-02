@@ -1,11 +1,12 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { setAuthData } from '../../Store/Auth/Slice';
 import AuthApi from '../../Api/Auth/Auth';
-import { Link } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 
 const Login = () => {
     const dispatch = useDispatch();
+    const navigate = useNavigate();
 
     const [formData, setFormData] = useState({
         email: "",
@@ -30,25 +31,15 @@ const Login = () => {
         try {
             const res = await AuthApi.login(formData);
 
-            console.log("LOGIN RESPONSE ", res.data);
-
             const token = res.data?.data?.token;
-
-            if (!token) {
-                throw new Error("Token missing from response");
-            }
-
+            if (!token) throw new Error("Token missing");
 
             localStorage.setItem("token", token);
 
-
-            dispatch(setAuthData({}));
-
-            alert("Login successful");
+            dispatch(setAuthData({ isLoggedIn: true }));
+            navigate("/");
 
         } catch (err) {
-            console.error("LOGIN ERROR ", err.response || err.message);
-
             setError(
                 err.response?.data?.message ||
                 err.message ||
@@ -58,7 +49,6 @@ const Login = () => {
             setLoading(false);
         }
     };
-
 
     return (
         <div className="min-h-screen flex items-center justify-center bg-gray-100">
@@ -76,7 +66,7 @@ const Login = () => {
                             value={formData.email}
                             onChange={handleChange}
                             required
-                            className="w-full px-3 py-2 border rounded focus:outline-none focus:ring"
+                            className="w-full px-3 py-2 border rounded"
                         />
                     </div>
 
@@ -88,16 +78,17 @@ const Login = () => {
                             value={formData.password}
                             onChange={handleChange}
                             required
-                            className="w-full px-3 py-2 border rounded focus:outline-none focus:ring"
+                            className="w-full px-3 py-2 border rounded"
                         />
                     </div>
 
                     <button type="submit" className="w-full py-2 px-4 border rounded-2xl">
-                        login
+                        Login
                     </button>
+
                     <div className="text-center text-sm">
-                        <span className="text-gray-600">Don't have an account? </span>
-                        <Link to="/signup" className="text-blue-700 ">Sign up here</Link>
+                        <span>Don't have an account? </span>
+                        <Link to="/signup">Sign up here</Link>
                     </div>
                 </form>
             </div>

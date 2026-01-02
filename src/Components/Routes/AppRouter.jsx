@@ -1,15 +1,25 @@
-import React from 'react'
-import SignUp from '../Auth/SignUp'
+import { Route, Routes, Navigate } from 'react-router-dom'
+import { useSelector } from 'react-redux'
 import Login from '../Auth/Login'
-import { Route, Routes } from 'react-router-dom'
+import SignUp from '../Auth/SignUp'
+import Home from '../Home/Home'
 
 const AppRouter = () => {
-    return (
-        <Routes>
-            <Route path="/login" element={<Login />} />
-            <Route path="/signup" element={<SignUp />} />
-        </Routes>
-    )
-}
+  const currentUser = useSelector(state => state.auth.currentUser);
 
-export default AppRouter
+  return (
+    <Routes>
+      <Route path="/login" element={<Login />} />
+      <Route path="/signup" element={<SignUp />} />
+
+      <Route
+        path="/"
+        element={
+          currentUser ? <Home /> : <Navigate to="/login" replace />
+        }
+      />
+    </Routes>
+  );
+};
+
+export default AppRouter;
