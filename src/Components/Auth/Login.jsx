@@ -22,37 +22,51 @@ const Login = () => {
   };
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
-    setLoading(true);
-    setError("");
+  e.preventDefault();
+  setLoading(true);
+  setError("");
 
-    try {
-      const res = await AuthApi.login({
-        email: formData.email,
-        password: formData.password,
-      });
+  try {
+    const res = await AuthApi.login(formData);
 
-      if (res.data.token) {
-        localStorage.setItem("token", res.data.token);
-      }
+    console.log("LOGIN RESPONSE ", res.data);
 
-      dispatch(setAuthData(res.data.user));
-      alert("Login successful");
-    } catch (err) {
-      setError(err.response?.data?.message || "Login failed");
-    } finally {
-      setLoading(false);
+    const token = res.data?.data?.token;
+
+    if (!token) {
+      throw new Error("Token missing from response");
     }
-  };
+
+    
+    localStorage.setItem("token", token);
+
+   
+    dispatch(setAuthData({}));
+
+    alert("Login successful");
+
+  } catch (err) {
+    console.error("LOGIN ERROR ", err.response || err.message);
+
+    setError(
+      err.response?.data?.message ||
+      err.message ||
+      "Login failed"
+    );
+  } finally {
+    setLoading(false);
+  }
+};
+
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-100">
       <div className="max-w-md w-full bg-white p-10 rounded-lg">
         <h1 className="text-center text-3xl font-bold">Login</h1>
 
-        {error && <p className="text-red-500">{error}</p>}
+        {error && <p className="text-red-500 text-center">{error}</p>}
 
-        <form onSubmit={handleSubmit} className="space-y-6">
+        <form onSubmit={handleSubmit} className="space-y-6 mt-4">
           <div>
             <label>Email</label>
             <input
@@ -61,7 +75,7 @@ const Login = () => {
               value={formData.email}
               onChange={handleChange}
               required
-              className="w-full px-3 py-2 border rounded"
+              className="w-full px-3 py-2 border rounded focus:outline-none focus:ring"
             />
           </div>
 
@@ -73,11 +87,14 @@ const Login = () => {
               value={formData.password}
               onChange={handleChange}
               required
-              className="w-full px-3 py-2 border rounded"
+              className="w-full px-3 py-2 border rounded focus:outline-none focus:ring"
             />
           </div>
 
-          <button disabled={loading} className="w-full py-2 border rounded">
+          <button
+            disabled={loading}
+            className="w-full py-2 border rounded bg-black text-white disabled:opacity-50"
+          >
             {loading ? "Logging in..." : "Login"}
           </button>
         </form>
