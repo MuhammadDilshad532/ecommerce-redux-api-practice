@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { useDispatch } from "react-redux";
 import AuthApi from "../../Api/Auth/Auth";
 import { setAuthData } from "../../Store/Auth/Slice";
@@ -64,7 +64,7 @@ const SignUp = () => {
                             value={formData.name}
                             onChange={handleChange}
                             required
-                            className="mt-1  w-full px-3 py-2 border border-gray-300 rounded-md  focus:outline-none "
+                            className="mt-1  w-full px-3 py-2 border  rounded-md  focus:outline-none "
                         />
                     </div>
 
@@ -76,7 +76,7 @@ const SignUp = () => {
                             value={formData.email}
                             onChange={handleChange}
                             required
-                            className="mt-1  w-full px-3 py-2 border border-gray-300 rounded-md  focus:outline-none "
+                            className="mt-1  w-full px-3 py-2 border rounded-md  focus:outline-none "
                         />
                     </div>
 
@@ -88,13 +88,17 @@ const SignUp = () => {
                             value={formData.password}
                             onChange={handleChange}
                             required
-                            className="mt-1  w-full px-3 py-2 border border-gray-300 rounded-md  focus:outline-none "
+                            className="mt-1  w-full px-3 py-2 border  rounded-md  focus:outline-none "
                         />
                     </div>
 
                     <button type="submit" className="w-full py-2 px-4 border rounded-2xl">
                         Signup
                     </button>
+                    <div>
+                        <span>Already have an account?</span>
+                        <span>login</span>
+                    </div>
                 </form>
             </div>
         </div>
