@@ -1,4 +1,6 @@
 import axios from "axios";
+import { store } from "../Store/Store";
+import { setAuthData } from "../Store/Auth/Slice";
 
 const axiosClient = axios.create({
   baseURL: import.meta.env.VITE_BACKEND_URL,
@@ -16,6 +18,17 @@ axiosClient.interceptors.request.use(
     return config;
   },
   (error) => Promise.reject(error)
+);
+
+axiosClient.interceptors.response.use(
+  (res) => res,
+  (error) => {
+    if (error.response?.status === 401) {
+      localStorage.removeItem("token");
+      store.dispatch(setAuthData(null));
+    }
+    return Promise.reject(error);
+  }
 );
 
 export default axiosClient;
