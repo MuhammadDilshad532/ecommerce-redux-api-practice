@@ -36,11 +36,13 @@ const SignUp = () => {
             });
             if (res.data.token) {
                 localStorage.setItem("token", res.data.token);
+                dispatch(setAuthData(res.data.user));
+                alert("Signup successful");
+            } else {
+                alert(res.data.message || "Signup initiated, please verify your email");
             }
-            dispatch(setAuthData(res.data.user));
 
             setLoading(false);
-            alert("Signup successful");
         } catch (err) {
             console.log(err.response?.data);
             setError(err.response?.data?.message || "Signup failed");
