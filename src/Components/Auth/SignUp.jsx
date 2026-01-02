@@ -2,10 +2,9 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import AuthApi from "../../Api/Auth/Auth";
 import { setAuthData } from "../../Store/Auth/Slice";
-
+import { Link } from 'react-router-dom';
 const SignUp = () => {
     const dispatch = useDispatch();
-
     const [formData, setFormData] = useState({
         name: "",
         email: "",
@@ -97,9 +96,9 @@ const SignUp = () => {
                     <button type="submit" className="w-full py-2 px-4 border rounded-2xl">
                         Signup
                     </button>
-                    <div>
+                    <div className="text-center">
                         <span>Already have an account?</span>
-                        <span>login</span>
+                        <Link to={"/login"} className="text-blue-700">login here</Link>
                     </div>
                 </form>
             </div>
