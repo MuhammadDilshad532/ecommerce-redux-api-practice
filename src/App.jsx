@@ -1,15 +1,9 @@
 import './App.css'
-import Login from './Components/Auth/Login'
-import SignUp from './Components/Auth/SignUp'
+import AppRouter from './Components/Routes/AppRouter'
 
 function App() {
-
-
   return (
-    <div className=''>
-     <SignUp />
-     <Login />
-    </div>
+    <AppRouter />
   )
 }
 
