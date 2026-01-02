@@ -8,6 +8,10 @@ class AuthApi {
   static signUp(data) {
     return axiosClient.post("/auth/signup", data);
   }
+
+  static verifyOtp(data) {
+    return axiosClient.post("/auth/verify-otp", data);
+  }
 }
 
 export default AuthApi;

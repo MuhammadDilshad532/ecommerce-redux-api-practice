@@ -2,9 +2,10 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import AuthApi from "../../Api/Auth/Auth";
 import { setAuthData } from "../../Store/Auth/Slice";
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 const SignUp = () => {
     const dispatch = useDispatch();
+    const navigate = useNavigate();
     const [formData, setFormData] = useState({
         name: "",
         email: "",
@@ -38,7 +39,8 @@ const SignUp = () => {
                 dispatch(setAuthData(res.data.user));
                 alert("Signup successful");
             } else {
-                alert(res.data.message || "Signup initiated, please verify your email");
+                localStorage.setItem("email", formData.email);
+                navigate("/verifyotp");
             }
 
             setLoading(false);
