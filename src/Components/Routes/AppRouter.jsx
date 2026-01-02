@@ -3,6 +3,7 @@ import { useSelector } from 'react-redux'
 import Login from '../Auth/Login'
 import SignUp from '../Auth/SignUp'
 import Home from '../Home/Home'
+import VerifyOtp from '../Auth/VerifyOtp'
 
 const AppRouter = () => {
   const currentUser = useSelector(state => state.auth.currentUser);
@@ -11,6 +12,7 @@ const AppRouter = () => {
     <Routes>
       <Route path="/login" element={<Login />} />
       <Route path="/signup" element={<SignUp />} />
+      <Route path='/verifyotp' element={<VerifyOtp />} />
 
       <Route
         path="/"
