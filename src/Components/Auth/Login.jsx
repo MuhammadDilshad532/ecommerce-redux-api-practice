@@ -80,6 +80,7 @@ const Login = () => {
                             required
                             className="w-full px-3 py-2 border rounded"
                         />
+                        <Link to="/forgot-password" className='text-blue-600'>Forgot Password</Link>
                     </div>
 
                     <button type="submit" className="w-full py-2 px-4 border rounded-2xl">
@@ -88,7 +89,7 @@ const Login = () => {
 
                     <div className="text-center text-sm">
                         <span>Don't have an account? </span>
-                        <Link to="/signup">Sign up here</Link>
+                        <Link to="/signup" className='text-blue-600'>Sign up here</Link>
                     </div>
                 </form>
             </div>
