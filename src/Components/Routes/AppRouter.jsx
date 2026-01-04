@@ -5,6 +5,7 @@ import SignUp from '../Auth/SignUp'
 import Home from '../Home/Home'
 import VerifyOtp from '../Auth/VerifyOtp'
 import ForgotPassword from '../Auth/ForgotPassword'
+import ResetPassword from '../Auth/ResetPassword'
 
 const AppRouter = () => {
   const currentUser = useSelector(state => state.auth.currentUser);
@@ -15,6 +16,7 @@ const AppRouter = () => {
       <Route path="/signup" element={<SignUp />} />
       <Route path='/verifyotp' element={<VerifyOtp />} />
       <Route path='/forgot-password' element={<ForgotPassword />} />
+      <Route path='/reset-password' element = {<ResetPassword />}/>
       <Route
         path="/"
         element={

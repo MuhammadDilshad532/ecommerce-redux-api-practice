@@ -56,7 +56,7 @@ const SignUp = () => {
             <div className="max-w-md w-full space-y-8 bg-white p-10 rounded-lg ">
                 <h1 className="text-center text-3xl font-bold">Signup</h1>
 
-                {error && <p style={{ color: "red" }}>{error}</p>}
+                {error && <p className="text-red-600">{error}</p>}
 
                 <form onSubmit={handleSubmit} className="space-y-6">
                     <div>

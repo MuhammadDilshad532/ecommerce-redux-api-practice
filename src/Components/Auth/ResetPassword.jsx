@@ -41,30 +41,40 @@ const ResetPassword = () => {
     }
 
     return (
-        <div>
-            <form onSubmit={handleSubmit}>
-                <h1>Reset password</h1>
-                <input
-                    type="password"
-                    placeholder='new Password'
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                    required
-                />
-                <input
-                    type="password"
-                    placeholder='confirm password'
-                    value={confirmPassword}
-                    onChange={(e) => setConfirmPassword(e.target.value)}
-                    required
-                />
-                <button type='submit' disabled={loading}>
-                    {loading ? "resting.." : "reset password"}
-                </button>
-                {error && (
-                    <p>{error}</p>
-                )}
-            </form>
+        <div className='min-h-screen flex items-center justify-center bg-gray-100'>
+            <div className='max-w-md bg-white p-10 w-full rounded-lg '>
+                <form onSubmit={handleSubmit} className='flex flex-col space-y-3'>
+                    <h1 className='text-center text-3xl font-bold pb-3'>Reset password</h1>
+                    <div>
+                        <label> New Password</label>
+                        <input
+                            type="password"
+                            placeholder='New Password'
+                            value={password}
+                            onChange={(e) => setPassword(e.target.value)}
+                            required
+                            className="mt-1  w-full px-3 py-2 border  rounded-md  focus:outline-none"
+                        />
+                    </div>
+                    <div>
+                        <label>Confirm Password</label>
+                        <input
+                            type="password"
+                            placeholder='Confirm Password'
+                            value={confirmPassword}
+                            onChange={(e) => setConfirmPassword(e.target.value)}
+                            required
+                            className="mt-1  w-full px-3 py-2 border  rounded-md  focus:outline-none"
+                        />
+                    </div>
+                    <button type='submit' disabled={loading} className='className="w-full py-2 px-4 border rounded-2xl mt-2'>
+                        {loading ? "resting.." : "Confirm"}
+                    </button>
+                    {error && (
+                        <p className='text-red-600'>{error}</p>
+                    )}
+                </form>
+            </div>
         </div>
     )
 }

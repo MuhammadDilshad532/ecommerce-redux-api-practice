@@ -66,7 +66,7 @@ const Login = () => {
                             value={formData.email}
                             onChange={handleChange}
                             required
-                            className="w-full px-3 py-2 border rounded"
+                            className="mt-1  w-full px-3 py-2 border  rounded-md  focus:outline-none"
                         />
                     </div>
 
@@ -78,7 +78,7 @@ const Login = () => {
                             value={formData.password}
                             onChange={handleChange}
                             required
-                            className="w-full px-3 py-2 border rounded"
+                           className="mt-1  w-full px-3 py-2 border  rounded-md  focus:outline-none"
                         />
                         <Link to="/forgot-password" className='text-blue-600'>Forgot Password</Link>
                     </div>

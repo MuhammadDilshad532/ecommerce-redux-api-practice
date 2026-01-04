@@ -50,14 +50,14 @@ const VerifyOtp = () => {
     <div className="min-h-screen flex items-center justify-center bg-gray-100 px-4">
       <div className="max-w-md w-full bg-white p-10 rounded-lg">
         <form onSubmit={handleSubmit} className="space-y-4">
-          <h2 className="text-xl font-semibold text-center">Verify OTP</h2>
+          <h2 className="text-center text-3xl font-bold">Verify OTP</h2>
 
           <input
             type="number"
             value={otp}
             onChange={(e) => setOtp(e.target.value)}
             placeholder="Enter 4-digit OTP"
-            className="w-full px-3 py-2 border rounded-md"
+           className="mt-1  w-full px-3 py-2 border  rounded-md  focus:outline-none"
             required
           />
 

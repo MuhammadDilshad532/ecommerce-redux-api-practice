@@ -28,10 +28,10 @@ const ForgotPassword = () => {
         <div className='min-h-screen flex  items-center justify-center bg-gray-100 py-12 px-4 '>
             <div className='max-w-md w-full bg-white p-10 rounded-lg'>
                 <form onSubmit={handleSubmit} className='flex flex-col space-y-3'>
-                    <h1 className='text-xl'>Forgot Password</h1>
+                    <h1 className='text-center text-3xl font-bold'>Forgot Password</h1>
                     <input
                         type="email"
-                        placeholder='enter your email'
+                        placeholder='Enter your Email'
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
                         required
