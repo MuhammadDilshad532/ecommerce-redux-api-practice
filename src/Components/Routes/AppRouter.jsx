@@ -6,6 +6,7 @@ import Home from '../Home/Home'
 import VerifyOtp from '../Auth/VerifyOtp'
 import ForgotPassword from '../Auth/ForgotPassword'
 import ResetPassword from '../Auth/ResetPassword'
+import Users from '../Users/Users'
 
 const AppRouter = () => {
   const currentUser = useSelector(state => state.auth.currentUser);
@@ -23,6 +24,7 @@ const AppRouter = () => {
           currentUser ? <Home /> : <Navigate to="/login" replace />
         }
       />
+      <Route path='/users' element={<Users />}/>
     </Routes>
   );
 };
