@@ -40,7 +40,7 @@ const SignUp = () => {
                 alert("Signup successful");
             } else {
                 localStorage.setItem("email", formData.email);
-                navigate("/verifyotp");
+                navigate("/verify-otp");
             }
 
             setLoading(false);
@@ -95,10 +95,10 @@ const SignUp = () => {
                         />
                     </div>
 
-                    <button type="submit" className="w-full py-2 px-4 border rounded-2xl">
+                    <button type="submit" className="w-full py-2 px-4 border rounded-2xl cursor-pointer">
                         Signup
                     </button>
-                    <div className="text-center">
+                    <div className="text-center cursor-pointer">
                         <span>Already have an account?</span>
                         <Link to={"/login"} className="text-blue-700">login here</Link>
                     </div>

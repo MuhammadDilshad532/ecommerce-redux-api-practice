@@ -12,8 +12,13 @@ class AuthApi {
   static verifyOtp(data) {
     return axiosClient.post("/auth/verify-otp", data);
   }
-  static ForgotPassword (data){
-    return axiosClient.post("/auth/forgot-password" , data)
+
+  static ForgotPassword(data) {
+    return axiosClient.post("/auth/forgot-password", data);
+  }
+
+  static ResetPassword(data) {
+    return axiosClient.post("/auth/reset-password", data);
   }
 }
 

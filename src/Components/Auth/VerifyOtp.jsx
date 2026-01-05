@@ -1,79 +1,72 @@
-import { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
-import AuthApi from '../../Api/Auth/Auth'
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import AuthApi from "../../Api/Auth/Auth";
 
 const VerifyOtp = () => {
-  const [otp, setOtp] = useState("")
-  const [loading, setLoading] = useState(false)
-  const [error, setError] = useState("")
+  const [otp, setOtp] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
 
-  const navigate = useNavigate()
-  const email = localStorage.getItem("email")
-  const flow = localStorage.getItem("flow") 
+  const navigate = useNavigate();
+  const email = localStorage.getItem("email");
+  const flow = localStorage.getItem("flow");
 
   const handleSubmit = async (e) => {
-    e.preventDefault()
+    e.preventDefault();
 
-    if (!email) {
-      setError("Email not found. Please try again.")
-      return
-    }
-
-    if (otp.length !== 4) {
-      setError("OTP must be a 4-digit number.")
-      return
+    if (!/^\d{4}$/.test(otp)) {
+      setError("OTP must be a 4-digit number");
+      return;
     }
 
     try {
-      setLoading(true)
-      setError("")
+      setLoading(true);
+      setError("");
 
-      await AuthApi.verifyOtp({ email, otp })
+      await AuthApi.verifyOtp({
+        email,
+        otp,
+      });
 
       if (flow === "forgot") {
-        navigate("/reset-password")
+        navigate("/reset-password");
       } else {
-        localStorage.removeItem("email")
-        navigate("/login")
+        navigate("/login");
       }
 
-      localStorage.removeItem("flow")
-
+      localStorage.removeItem("flow");
     } catch (err) {
-      setError(err.response?.data?.message || "OTP verification failed")
+      setError(err.response?.data?.message || "OTP verification failed");
     } finally {
-      setLoading(false)
+      setLoading(false);
     }
-  }
+  };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100 px-4">
-      <div className="max-w-md w-full bg-white p-10 rounded-lg">
-        <form onSubmit={handleSubmit} className="space-y-4">
+    <div className='min-h-screen flex  items-center justify-center bg-gray-100 py-12 px-4 '>
+      <div className='max-w-md w-full bg-white p-10 rounded-lg'>
+        <form onSubmit={handleSubmit}>
           <h2 className="text-center text-3xl font-bold">Verify OTP</h2>
 
           <input
-            type="number"
+            type="text"
             value={otp}
             onChange={(e) => setOtp(e.target.value)}
+            maxLength={4}
             placeholder="Enter 4-digit OTP"
-           className="mt-1  w-full px-3 py-2 border  rounded-md  focus:outline-none"
             required
+            className="mt-3  w-full px-3 py-2 border  rounded-md  focus:outline-none "
           />
 
-          <button
-            type="submit"
-            disabled={loading}
-            className="border p-2 rounded-lg w-full"
-          >
+          <button disabled={loading} className="mt-4 w-full py-2 px-4 border rounded-2xl cursor-pointer">
             {loading ? "Verifying..." : "Verify OTP"}
           </button>
 
-          {error && <p className="text-red-600 text-center">{error}</p>}
+          {error && <p className="text-red-400">{error}</p>}
         </form>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default VerifyOtp
+export default VerifyOtp;

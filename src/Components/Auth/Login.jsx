@@ -80,14 +80,14 @@ const Login = () => {
                             required
                            className="mt-1  w-full px-3 py-2 border  rounded-md  focus:outline-none"
                         />
-                        <Link to="/forgot-password" className='text-blue-600'>Forgot Password</Link>
+                        <Link to="/forgot-password" className='text-blue-600 cursor-pointer'>Forgot Password</Link>
                     </div>
 
-                    <button type="submit" className="w-full py-2 px-4 border rounded-2xl">
+                    <button type="submit" className="w-full py-2 px-4 border rounded-2xl cursor-pointer">
                         Login
                     </button>
 
-                    <div className="text-center text-sm">
+                    <div className="text-center text-sm cursor-pointer">
                         <span>Don't have an account? </span>
                         <Link to="/signup" className='text-blue-600'>Sign up here</Link>
                     </div>
