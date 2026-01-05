@@ -95,8 +95,8 @@ const SignUp = () => {
                         />
                     </div>
 
-                    <button type="submit" className="w-full py-2 px-4 border rounded-2xl cursor-pointer">
-                        Signup
+                    <button disabled={loading} type="submit" className="w-full py-2 px-4 border rounded-2xl cursor-pointer">
+                        {loading ? "SignUp..." : "SignUp"}
                     </button>
                     <div className="text-center cursor-pointer">
                         <span>Already have an account?</span>

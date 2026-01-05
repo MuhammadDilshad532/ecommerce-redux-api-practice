@@ -83,8 +83,8 @@ const Login = () => {
                         <Link to="/forgot-password" className='text-blue-600 cursor-pointer'>Forgot Password</Link>
                     </div>
 
-                    <button type="submit" className="w-full py-2 px-4 border rounded-2xl cursor-pointer">
-                        Login
+                    <button disabled={loading} type="submit" className="w-full py-2 px-4 border rounded-2xl cursor-pointer">
+                      {loading? 'login...' : 'login'}  
                     </button>
 
                     <div className="text-center text-sm cursor-pointer">
