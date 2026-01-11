@@ -29,7 +29,7 @@ const SignUp = () => {
 
         try {
             const res = await AuthApi.signUp({
-                name: formData.name,
+                username: formData.name,
                 email: formData.email,
                 password: formData.password,
                 role: "USER",
@@ -60,7 +60,7 @@ const SignUp = () => {
 
                 <form onSubmit={handleSubmit} className="space-y-6">
                     <div>
-                        <label>Name</label>
+                        <label>Username</label>
                         <input
                             type="text"
                             name="name"
