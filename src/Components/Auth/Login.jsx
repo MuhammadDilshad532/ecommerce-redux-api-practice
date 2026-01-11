@@ -31,12 +31,12 @@ const Login = () => {
         try {
             const res = await AuthApi.login(formData);
 
-            const token = res.data?.data?.token;
+            const token = res.data?.token;
             if (!token) throw new Error("Token missing");
 
             localStorage.setItem("token", token);
 
-            dispatch(setAuthData({ isLoggedIn: true }));
+            dispatch(setAuthData(res.data));
             navigate("/");
 
         } catch (err) {
