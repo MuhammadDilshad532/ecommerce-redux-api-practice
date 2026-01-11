@@ -14,7 +14,7 @@ const VerifyOtp = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (!/^\d{4}$/.test(otp)) {
+    if (!/^\d{6}$/.test(otp)) {
       setError("OTP must be a 4-digit number");
       return;
     }
@@ -23,10 +23,16 @@ const VerifyOtp = () => {
       setLoading(true);
       setError("");
 
-      await AuthApi.verifyOtp({
+      const res = await AuthApi.verifyOtp({
         email,
         otp,
       });
+
+      const token = res.data?.token || res.data?.resetToken;
+      if (token) {
+        localStorage.setItem("resetToken", token);
+      }
+      localStorage.setItem("otp", otp);
 
       if (flow === "forgot") {
         navigate("/reset-password");
@@ -52,7 +58,7 @@ const VerifyOtp = () => {
             type="text"
             value={otp}
             onChange={(e) => setOtp(e.target.value)}
-            maxLength={4}
+            maxLength={6}
             placeholder="Enter 4-digit OTP"
             required
             className="mt-3  w-full px-3 py-2 border  rounded-md  focus:outline-none "
