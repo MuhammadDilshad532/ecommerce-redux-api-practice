@@ -18,7 +18,7 @@ const ForgotPassword = () => {
             await AuthApi.ForgotPassword({ email });
             localStorage.setItem("email", email);
             localStorage.setItem("flow", "forgot");
-            navigate("/verify-otp");
+            navigate("/reset-password");
         } catch (err) {
             setError(err.response?.data?.message || "Failed");
         } finally {
